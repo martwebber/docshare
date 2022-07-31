@@ -13,7 +13,7 @@ function DocumentsList() {
 
   function handleDeleteClickEvent(id) {
     console.log(id)
-    fetch(`http://localhost:4000/documents/${id}`, {
+    fetch(`http://localhost:4000/api/documents/${id}`, {
       method: 'DELETE',
     })
       .then((response) => response.json())

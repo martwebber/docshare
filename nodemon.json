@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_URL": "mongodb+srv://admin:0vnpziHNF8HWfU9S@phasetwo-docshare.3xqgmyh.mongodb.net/docshare?retryWrites=true&w=majority",
+        "JWT_KEY": "secret",
+        "PORT": 4000
+    }
+}

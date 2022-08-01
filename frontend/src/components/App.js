@@ -6,7 +6,7 @@ import CreateNewDocumentForm from './CreateNewDocumentForm';
 import Home from './Home';
 import DocumentsList from './DocumentsList';
 import Search from './Search';
-
+import DocumentItem from './DocumentItem';
 function App() {
   return (
 
@@ -17,6 +17,7 @@ function App() {
       <Route exact path="/all-documents" element={<DocumentsList/>}></Route>
       <Route exact path="/create-new-document" element={<CreateNewDocumentForm/>}></Route>
       <Route exact path="/search" element={<Search/>}></Route> 
+      <Route exact path="/document/:_id" element={<DocumentItem/>}></Route> 
       </Routes>
   </div>
   );

@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import DocumentPage from './DocumentPage';
 
-function DocumentItem({document, onDeleteClick}){
-  const {_id, owner, title, description, fileUrl} = document;
+function DocumentItem({document, handleDeleteClickEvent}){
+  //const [documents, setDocuments] = useState([]);
+  const {id, owner, title, description} = document;
 
-  const handleDeleteClick = ()=>{
-    onDeleteClick(_id)
-  }
+  <DocumentPage
+  onDeleteClick={handleDeleteClickEvent}
+  />
     return(
         <tr>
-        <td>{_id}</td>
         <td>{owner}</td>
         <td>{title}</td>
         <td>{description}</td>
-        <td>{fileUrl}</td>
-        <td><button className="btn btn-primary">Update</button></td>
-        <td><button onClick={handleDeleteClick} className="btn btn-danger">Delete</button></td>
+        <td><Link to={`/document/${id}`}><button className="btn btn-primary">View more details</button></Link></td>
       </tr>
     )
 }

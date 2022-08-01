@@ -5,30 +5,15 @@ function DocumentsList() {
   const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/documents')
+    fetch('https://outgoing-sideways-spoonbill.glitch.me/documents')
       .then(res => res.json())
-      .then(docs => setDocuments(docs.documents))
+      .then(docs => setDocuments(docs))
   }, [])
-
-  function handleDeleteClickEvent(id) {
-    console.log(id)
-    fetch(`http://localhost:4000/api/documents/${id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then(() => {
-        let updatedDocuments = documents.filter((document) => (
-          document._id !== id
-        ))
-        setDocuments(updatedDocuments)
-      })
-  }
 
   const documentsList = documents.map(document => (
     <DocumentItem
-      key={document._id}
+      key={document.id}
       document={document}
-      onDeleteClick={handleDeleteClickEvent}
     />
   ))
 
@@ -37,13 +22,10 @@ function DocumentsList() {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Owner</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
-            <th scope="col">File</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
+            <th scope="col">View document</th>
           </tr>
         </thead>
         <tbody>

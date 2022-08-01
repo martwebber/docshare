@@ -5,9 +5,9 @@ const Search = () => {
     const [documents, setDocuments] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:4000/api/documents')
+        fetch('https://outgoing-sideways-spoonbill.glitch.me/documents')
           .then(res => res.json())
-          .then(docs => setDocuments(docs.documents))
+          .then(docs => setDocuments(docs))
       }, [])                                         
 
   const docsList = documents.filter((val)=>{

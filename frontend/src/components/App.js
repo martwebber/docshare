@@ -7,19 +7,24 @@ import Home from './Home';
 import DocumentsList from './DocumentsList';
 import Search from './Search';
 import DocumentItem from './DocumentItem';
+import ErrorPage from './ErrorPage';
+import Footer from './Footer';
+import DocumentPage from './DocumentPage';
 function App() {
   return (
 
     <div className="App">
       <NavBar/>
        <Routes>
-       <Route exact path="/" element={<Home/>}></Route>
-      <Route exact path="/all-documents" element={<DocumentsList/>}></Route>
-      <Route exact path="/create-new-document" element={<CreateNewDocumentForm/>}></Route>
-      <Route exact path="/search" element={<Search/>}></Route> 
-      <Route exact path="/document/:_id" element={<DocumentItem/>}></Route> 
+       <Route path="/" element={<Home/>}></Route>
+        <Route path="/all-documents" element={<DocumentsList/>}></Route>
+        <Route path="/create-new-document" element={<CreateNewDocumentForm/>}></Route>
+        <Route path="/search" element={<Search/>}></Route> 
+        <Route path="/document/:id" element={<DocumentPage/>}></Route> 
+        <Route path="*" element={<ErrorPage/>}></Route> 
       </Routes>
-  </div>
+      <Footer/>
+  </div>    
   );
 }
 

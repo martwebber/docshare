@@ -3,7 +3,6 @@ import DocumentItem from './DocumentItem';
 
 function DocumentsList() {
   const [documents, setDocuments] = useState([]);
-  //const [search, setSearch] = useState({});
 
   useEffect(() => {
     fetch('http://localhost:4000/api/documents')
@@ -33,13 +32,8 @@ function DocumentsList() {
     />
   ))
 
-
-  // const searchResults = documents.filter((result) => {
-
-  // })
-
   return (
-    <div className="col-12 d-flex justify-content-center text-center">
+    <div className="col-12 d-flex justify-content-center text-center table-responsive">
       <table className="table">
         <thead>
           <tr>

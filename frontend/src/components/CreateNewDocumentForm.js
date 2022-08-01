@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+//import axios from 'axios';
 
 function CreateNewDocumentForm() {
   const [owner, setOwner] = useState("")
@@ -9,61 +9,33 @@ function CreateNewDocumentForm() {
 
   //let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('owner', owner);
-    formData.append('title', title);
-    formData.append('description', description);
-    if (fileUrl !== null) {
+    if ((fileUrl && title && description &&  owner) !== null) {
+      formData.append('owner', owner);
+      formData.append('title', title);
+      formData.append('description', description);
       formData.append('fileUrl', fileUrl);
-
     }
-//    console.log(formData)
 
-    await axios({
-      method: "POST",
-      url: "http://localhost:4000/api/documents",
-      data: formData,
-      headers: { 'content-type': 'multipart/form-data' }
-    }).then((response) => {
-      console.log(response.data);
-      //navigate.push('/');
-    })
+    // await axios({
     //   method: "POST",
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': undefined
+    //   url: "http://localhost:4000/api/documents",
+    //   data: formData,
+    //   headers: { 'content-type': 'multipart/form-data' }
+    // }).then((response) => {
+    //   console.log(response  );
+    //   //navigate.push('/');
+    // })
 
-    //   },
-    //   body: formData
-    // });
-
-    //     fetch("http://localhost:4000/documents",{
-    //       method: "POST",
-    //       headers:{
-    //         "Content-Type": "application/json"
-    //       },
-    //       body: JSON.stringify({
-    //         owner: e.target.owner.value,
-    //         title: e.target.title.value,
-    //         description: e.target.description.value,
-    //         fileUrl: e.target.fileUrl.value,
-    //       })
-    //     })
-    //     .then(response=>response.json())
-    //     .then(data=>console.log(data))
-
-
-  }
-
-  useEffect(()=>{
-    fetch("http://localhost:4000/api/documents")
-    .then(response=>response.json())
-    .then((results)=>{
-      results.documents.forEach((res)=>console.log(res))
+    fetch("http://localhost:4000/api/documents",{
+      method: "POST",
+      body: formData
     })
-  })
+    .then(response=>response.json())
+    .then(results=>console.log(results))
+  }
 
 
   return (

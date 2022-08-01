@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+//import axios from 'axios';
+const Search = () => {
+    const [search, setSearch] = useState("")
+    const [documents, setDocuments] = useState([])
 
-export default function Search(){
+    useEffect(() => {
+        fetch('http://localhost:4000/api/documents')
+          .then(res => res.json())
+          .then(docs => setDocuments(docs.documents))
+      }, [])                                         
 
-      return(
-        <div className="container">
-            <form>
-                <div>
-                    <label htmlFor="search" className="form-label">Search Documents</label>
-                    <input type="text" className="form-control" id="search" name="search" />
-                </div>
-            </form>
-            <h3 className="mt-4">Search</h3>
-            <div className="row">
-                {/* TODO: POPULATE RESULTS */}
-            </div>
-        </div>
-    )
-}
+  const docsList = documents.filter((val)=>{
+    if(search === ""){
+        return val;
+    }else if(val.title.toLowerCase().includes(search.toLowerCase())){
+        return val;
+    }
+  }).map((doc)=>(
+    <h3 key={doc._id}>{doc.title}</h3>
+    
+  ))
+  return (
+    <div className="">
+      <input
+        type="text"
+        placeholder={"Search for documents"}
+        onChange={(e)=>setSearch(e.target.value)}
+      />
+      <h1>Documents</h1>
+      {docsList}
+    </div>
+  );
+};
+
+export default Search;

@@ -38,3 +38,13 @@ margin-right: auto;
     transform: rotate(360deg);
   }
 }
+
+button.btn.btn-sm.btn.btn-primary{
+  margin-bottom: 5px;
+}
+
+.container{
+  width:600px;
+  margin-top:10px;
+  margin-bottom: 10px;
+}

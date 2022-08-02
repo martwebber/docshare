@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col,Container, Button } from "react-bootstrap";
-export default function DocumentPage({onDeleteClick}){
+
+export default function DocumentPage(){
     const [document, setDocument] = useState("")
-  let { id } = useParams()
-  const handleDeleteClick = ()=>{
-    onDeleteClick(document.id)
+    let { id } = useParams()
+    let navigate = useNavigate();
+
+  function handleDeleteClickEvent() {
+    fetch(`https://outgoing-sideways-spoonbill.glitch.me/documents/${document.id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then(() => {
+        navigate("/all-documents")
+      })
   }
+
     useEffect(() => {
-    fetch(`https://outgoing-sideways-spoonbill.glitch.me/documents/${id}`)
-      .then(res => res.json())
-      .then(doc => setDocument(doc))
-  }, [id])
+        fetch(`https://outgoing-sideways-spoonbill.glitch.me/documents/${id}`)
+        .then(res => res.json())
+        .then(doc => setDocument(doc))
+    }, [id])
     return(
 
         <Container className="d-flex">
@@ -25,11 +35,10 @@ export default function DocumentPage({onDeleteClick}){
                             <Card.Text>
                                 S{document.description}
                             </Card.Text>
-                            <Card.Link href="#">Card Link</Card.Link>
-                            <Card.Link href="#">Another Link</Card.Link>
+                            <Card.Link href={document.fileUrl} target="_blank">Document Link</Card.Link>
                         </Card.Body>
                         <Button className="btn btn-sm" variant="primary">Update</Button>
-                        <Button className="btn btn-sm" variant="danger" onClick={handleDeleteClick}>Delete</Button>
+                        <Button className="btn btn-sm" variant="danger" onClick={handleDeleteClickEvent                           }>Delete</Button>
 
                     </Card>
                 </Col>

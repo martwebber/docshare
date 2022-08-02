@@ -57,7 +57,7 @@ function CreateNewDocumentForm() {
           <textarea className="form-control" onChange={handleChange} id="documentDescription" name="description" placeholder="Enter document description..."></textarea>
         </div>
         <div className="mb-3 form-check">
-          <label className="form-label" htmlFor="fileUpload">Upload document link</label>
+          <label className="form-label" htmlFor="fileUpload">Add document link</label>
           <input type="text" className="form-control" onChange={handleChange} id="fileUpload" name="fileUrl" />
         </div>
         <button type="submit" className="btn btn-primary">Create document</button>

@@ -37,7 +37,6 @@ export default function DocumentPage(){
                             </Card.Text>
                             <Card.Link href={document.fileUrl} target="_blank">Document Link</Card.Link>
                         </Card.Body>
-                        <Button className="btn btn-sm" variant="primary">Update</Button>
                         <Button className="btn btn-sm" variant="danger" onClick={handleDeleteClickEvent                           }>Delete</Button>
 
                     </Card>

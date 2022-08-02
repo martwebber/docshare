@@ -24,7 +24,6 @@ function DocumentsList() {
           <tr>
             <th scope="col">Owner</th>
             <th scope="col">Title</th>
-            <th scope="col">Description</th>
             <th scope="col">View document</th>
           </tr>
         </thead>

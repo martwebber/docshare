@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-//import axios from 'axios';
+import { Link } from 'react-router-dom';
 const Search = () => {
     const [search, setSearch] = useState("")
     const [documents, setDocuments] = useState([])
@@ -17,8 +17,11 @@ const Search = () => {
         return val;
     }
   }).map((doc)=>(
-    <h3 key={doc._id}>{doc.title}</h3>
-    
+   <div>
+    <Link to={`/document/${doc.id}`}> <h3 key={doc.id}>{doc.title}</h3></Link>
+   <strong><span>{doc.owner}</span></strong> 
+   </div>
+
   ))
   return (
     <div className="">

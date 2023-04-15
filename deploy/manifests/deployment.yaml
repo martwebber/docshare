@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-application
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: react-application
+  template:
+    metadata:
+      labels:
+        run: react-application
+    spec:
+      containers:
+      - name: react-application
+        image: docker.io/anaisurlichs/react-example:0.0.3
+        ports:
+          - containerPort: 80
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 200m
+        securityContext:
+          allowPrivilegeEscalation: false
